@@ -8,7 +8,6 @@ import App from './App';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 const setup = () => shallow(<App />);
-
 const findByTestAttribute = (wrapper, value) =>
   wrapper.find(`[data-test='${value}']`);
 
@@ -27,5 +26,9 @@ test('renders counter display', () => {
   const counterDisplay = findByTestAttribute(wrapper, 'counter-display');
   expect(counterDisplay.length).toBe(1);
 });
-test('counter starts at 0', () => {});
+test('counter starts at 0', () => {
+  const wrapper = setup();
+  const count = findByTestAttribute(wrapper, 'count').text();
+  expect(count).toBe('0');
+});
 test('clicking on button increments counter display', () => {});
